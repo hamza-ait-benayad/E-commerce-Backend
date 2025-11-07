@@ -1,9 +1,10 @@
 
-import {express, body} from 'express'
-import { register, login } from '../../services/auth/register'
+import express from 'express'
+import { register } from '../../services/auth/register'
+import { login } from '../../services/auth/login'
+import { body } from 'express-validator'
 
 const router = express.Router()
-
 
 const validateRegister = [
   body('email')
