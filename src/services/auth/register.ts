@@ -30,7 +30,6 @@ export const register = async (
 
     const hashedPassword = await bcrypt.hash(password, env.BCRYPT_ROUNDS)
 
-
     const result = await prisma.$transaction(async (tx) => {
       const user = await tx.user.create({
         data: {
