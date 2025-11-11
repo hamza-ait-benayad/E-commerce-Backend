@@ -1,7 +1,5 @@
-
 import express from 'express'
-import { register } from '../../services/auth/register'
-import { login } from '../../services/auth/login'
+import { register, login } from '../../controllers/auth/auth.controller'
 import { body } from 'express-validator'
 
 const router = express.Router()
@@ -33,8 +31,6 @@ const validateLogin = [
 ]
 
 router.post('/register', validateRegister, register)
-
 router.post('/login', validateLogin, login)
-
 
 export default router
