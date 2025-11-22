@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
-import compression from 'compression';
+// import compression from 'compression';
 import cookieParser from 'cookie-parser';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import { env } from './config/env';
 import { errorMiddleware } from './middleware/error.middleware';
 import { loggerMiddleware } from './middleware/logger.middleware';
@@ -13,10 +13,10 @@ const app: Application = express();
 
 // Security middleware
 app.use(helmet());
-app.use(cors({
-  origin: env.CORS_ORIGIN,
-  credentials: true,
-}));
+// app.use(cors({
+//   origin: env.CORS_ORIGIN,
+//   credentials: true,
+// }));
 
 // Body parsing middleware
 app.use(express.json({ limit: '10mb' }));
@@ -24,12 +24,12 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(cookieParser());
 
 // Compression middleware
-app.use(compression());
+// app.use(compression());
 
 // Logging middleware
-if (env.NODE_ENV === 'development') {
-  app.use(morgan('dev'));
-}
+// if (env.NODE_ENV === 'development') {
+//   app.use(morgan('dev'));
+// }
 app.use(loggerMiddleware);
 
 // Health check endpoint
