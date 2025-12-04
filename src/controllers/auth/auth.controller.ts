@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
-import { loginService } from '../../services/auth/login';
-import { registerService } from '../../services/auth/register';
+import { loginService, registerService } from '../../services/authService';
 import { ApiError } from '../../utils/apiError';
 
 export const login = async (req: Request, res: Response, next: NextFunction) => {
