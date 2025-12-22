@@ -1,69 +1,82 @@
 export class ApiError extends Error {
 
-  statusCode: number;
+  statusCode: number;
 
-  isOperational: boolean;
+  isOperational: boolean;
 
-  
 
-  constructor(statusCode: number, message: string, isOperational = true) {
 
-    super(message);
+  constructor(statusCode: number, message: string, isOperational = true) {
 
-    this.statusCode = statusCode;
+    super(message);
 
-    this.isOperational = isOperational;
+    Object.setPrototypeOf(this, new.target.prototype);
 
-    Error.captureStackTrace(this, this.constructor);
+    this.statusCode = statusCode;
 
-  }
+    this.isOperational = isOperational;
 
-  
+    Error.captureStackTrace(this, this.constructor);
+  }
 
-  static badRequest(message: string) {
 
-    return new ApiError(400, message);
 
-  }
 
-  
 
-  static unauthorized(message = 'Unauthorized') {
+  static badRequest(message: string) {
 
-    return new ApiError(401, message);
+    return new ApiError(400, message);
 
-  }
+  }
 
-  
 
-  static forbidden(message = 'Forbidden') {
 
-    return new ApiError(403, message);
+  static unauthorized(message = 'Unauthorized') {
 
-  }
+    return new ApiError(401, message);
 
-  
+  }
 
-  static notFound(message = 'Resource not found') {
 
-    return new ApiError(404, message);
 
-  }
+  static forbidden(message = 'Forbidden') {
 
-  
+    return new ApiError(403, message);
 
-  static conflict(message: string) {
+  }
 
-    return new ApiError(409, message);
 
-  }
 
-  
+  static notFound(message = 'Resource not found') {
 
-  static internal(message = 'Internal server error') {
+    return new ApiError(404, message);
 
-    return new ApiError(500, message, false);
+  }
 
-  }
+
+
+  static conflict(message: string) {
+
+    return new ApiError(409, message);
+
+  }
+
+
+
+  static internal(message = 'Internal server error') {
+
+    return new ApiError(500, message, false);
+
+  }
+
+  toJSON() {
+    return {
+      name: this.name,
+      statusCode: this.statusCode,
+      message: this.message,
+      stack: this.stack,
+      isOperational: this.isOperational,
+    };
+  }
 
 }
