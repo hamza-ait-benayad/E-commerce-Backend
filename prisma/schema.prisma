@@ -10,7 +10,6 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 
@@ -187,8 +186,6 @@ model CartItem {
   @@index([productId])
   @@map("cart_items")
 }
-
-
 
 model Order {
   id              String        @id @default(uuid())
