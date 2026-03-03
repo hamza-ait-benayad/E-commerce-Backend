@@ -8,6 +8,7 @@ declare global {
       role: string;
     }
     interface Request {
+      sessionId?: string;
       user?: UserPayload;
     }
   }

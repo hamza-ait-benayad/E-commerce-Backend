@@ -6,7 +6,7 @@ export interface CreateProductDTO {
   description: string;
   price: Decimal | number;
   comparePrice?: Decimal | number;
-  sku: string;
+  sku?: string;
   categoryId: string;
   images?: string[];
   tags?: string[];
@@ -14,4 +14,4 @@ export interface CreateProductDTO {
   isActive?: boolean;
 }
 
-export interface UpdateProductDTO extends Partial<CreateProductDTO> {}
+export interface UpdateProductDTO extends Partial<CreateProductDTO> { }
